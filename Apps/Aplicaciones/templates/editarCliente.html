@@ -1,0 +1,47 @@
+{% extends "./plantilla.html" %}
+
+{% block title %} Tecnico {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+
+        <h2>Editar de Clientes</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarCliente/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtCedula" name="txtCedula" value="{{cliente.cedula}}" class="form-control" placeholder="Cedula"
+                            minlength="11" maxlength="11" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{cliente.nombre}}" class="form-control" placeholder="Nombre"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtApellido" name="txtApellido" value="{{cliente.apellido}}" class="form-control" placeholder="Apellido"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtDireccion" name="txtDireccion" value="{{cliente.direccion}}" class="form-control" placeholder="Dirección"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtTelefono" name="txtTelefono" value="{{cliente.telefono}}"class="form-control" placeholder="Teléfono"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

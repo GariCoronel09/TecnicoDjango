@@ -1,0 +1,56 @@
+{% extends "./plantilla.html" %}
+
+{% block title %} Tecnico {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+
+        <h2>Editar Usuario</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarUsuario/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtCedula" name="txtCedula" value="{{usuario.cedula}}" class="form-control" placeholder="Cedula"
+                            minlength="11" maxlength="11" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{usuario.nombre}}" class="form-control" placeholder="Nombre"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtApellido" name="txtApellido" value="{{usuario.apellido}}" class="form-control" placeholder="Apellido"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtDireccion" name="txtDireccion" value="{{usuario.direccion}}" class="form-control" placeholder="Dirección"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtTelefono" name="txtTelefono" value="{{usuario.telefono}}"class="form-control" placeholder="Teléfono"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label>Seleccione ROL: </label>
+                        <select name="txtrol" id="txtrol" value="{{usuario.rol}}">
+                            <option>GERENTE</option>
+                            <option>EMPLEADO</option>
+                          </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

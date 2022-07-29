@@ -1,0 +1,102 @@
+{% extends "./plantilla.html" %}
+
+{% block title %} Sistema Tecnico {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+       
+        {% endfor %}
+        {% endif %}
+        <br>
+        <h2>Gestión de Usuarios</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarUsuario/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtCedula" name="txtCedula" class="form-control" placeholder="Cedula"
+                            minlength="11" maxlength="11" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" placeholder="Dirección"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" placeholder="Teléfono"
+                            maxlength="50" required>
+                    </div>
+
+                    <br>
+                    <div class="form-group">
+                        <label>Seleccione ROL: </label>
+                        <select name="txtrol" id="txtrol">
+                            <option>GERENTE</option>
+                            <option>EMPLEADO</option>
+                          </select>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <br>
+        <h1>Listado de Usuarios</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Teléfono</th>
+                        <th>ROL</th>
+                        
+                        <th colspan="2">OPCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for c in usuario %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{c.cedula}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.apellido}}</td>
+                        <td>{{c.telefono}}</td>
+                        <td>{{c.rol}}</td>
+                        <td><a href="edicionUsuario/{{c.cedula}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarUsuario/{{c.cedula}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
